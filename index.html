@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SafeGully</title>
-  <link rel="stylesheet" href="style/style.css" />
+  <!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 </head>
 <body>
   <header>
@@ -12,7 +17,11 @@
   </header>
 
   <main>
-    <section id="map">[Map will load here]</section>
+    <section id="map">
+      <div id="map" style="height: 400px; width: 100%;">
+        
+      </div>
+    </section>
     <section id="report-form">
       <h2>Report a Hazard</h2>
       <form>
