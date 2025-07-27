@@ -1,0 +1,17 @@
+body {
+  font-family: sans-serif;
+  background: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #212529;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+#report-form {
+  padding: 1rem;
+}
