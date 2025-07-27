@@ -13,6 +13,20 @@ map.on('click', function (e) {
     .bindPopup('Hazard reported here!')
     .openPopup();
 });
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  const location = document.querySelector('input').value;
+  const description = document.querySelector('textarea').value;
+
+  if (lastClickedLatLng) {
+    L.marker([lastClickedLatLng.lat, lastClickedLatLng.lng])
+      .addTo(map)
+      .bindPopup(`<b>${location}</b><br>${description}`)
+      .openPopup();
+  }
+
+  form.reset();
+});
 
 document.querySelector("form").addEventListener("submit", (e) => {
   e.preventDefault();
