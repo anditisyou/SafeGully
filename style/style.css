@@ -212,3 +212,27 @@ button:hover {
 .fix-btn:hover {
   background: #c0392b;
 }
+
+footer {
+  background: #2c3e50;
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  font-weight: bold;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 8px white(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  margin: 0 8px;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
