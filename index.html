@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SafeGully</title>
   <!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Add CSS -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
@@ -22,9 +22,9 @@
     </section>
     <section id="report-form">
       <h2>Report a Hazard</h2>
-      <form>
-        <input type="text" placeholder="Location" required />
-        <textarea placeholder="Description"></textarea>
+      <form id="hazard-form">
+        <input type="text" id="location-input" placeholder="Location" required />
+        <textarea id="description-input" placeholder="Description"></textarea>
         <button type="submit">Submit</button>
       </form>
     </section>
