@@ -3,6 +3,7 @@ body {
   background: #f8f9fa;
   margin: 0;
   padding: 0;
+  line-height: 1.6;
 }
 
 header {
@@ -12,6 +13,53 @@ header {
   padding: 1rem;
 }
 
-#report-form {
+main {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 1rem;
+}
+
+#map {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#report-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#report-form h2 {
+  margin-top: 0;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+button {
+  background-color: #212529;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+button:hover {
+  background-color: #343a40;
 }
