@@ -6,29 +6,51 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
 }).addTo(map);
 
-// Add marker on map click
-map.on('click', function (e) {
+// Store last clicked location
+let lastClickedLatLng = null;
+
+// Add marker on map click and store location
+map.on('click', function(e) {
+  // Clear previous marker if exists
+  if (lastClickedLatLng) {
+    map.eachLayer(layer => {
+      if (layer instanceof L.Marker) {
+        map.removeLayer(layer);
+      }
+    });
+  }
+  
+  // Store new location
+  lastClickedLatLng = e.latlng;
+  
+  // Add temporary marker
   L.marker([e.latlng.lat, e.latlng.lng])
     .addTo(map)
-    .bindPopup('Hazard reported here!')
+    .bindPopup('Potential hazard location')
     .openPopup();
 });
-form.addEventListener('submit', function (e) {
+
+// Handle form submission
+document.getElementById('hazard-form').addEventListener('submit', function(e) {
   e.preventDefault();
-  const location = document.querySelector('input').value;
-  const description = document.querySelector('textarea').value;
+  
+  const location = document.getElementById('location-input').value;
+  const description = document.getElementById('description-input').value;
 
   if (lastClickedLatLng) {
+    // Add permanent marker with form data
     L.marker([lastClickedLatLng.lat, lastClickedLatLng.lng])
       .addTo(map)
       .bindPopup(`<b>${location}</b><br>${description}`)
       .openPopup();
+    
+    // Reset form and location
+    e.target.reset();
+    lastClickedLatLng = null;
+    
+    // Show confirmation
+    alert("Thanks for reporting! Our team will verify soon.");
+  } else {
+    alert("Please click on the map to select a location first!");
   }
-
-  form.reset();
-});
-
-document.querySelector("form").addEventListener("submit", (e) => {
-  e.preventDefault();
-  alert("Thanks for reporting! Our team will verify soon.");
 });
