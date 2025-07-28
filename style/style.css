@@ -222,7 +222,7 @@ footer {
   position: sticky;
   bottom: 0;
   width: 100%;
-  box-shadow: 0 -2px 8px white(0, 0, 0, 0.1);
+  box-shadow: 0 -2px 8px rgpa(0, 0, 0, 0.1);
   margin-top: 2rem;
 }
 
