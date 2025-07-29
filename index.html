@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeGully 🛠️</title>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+  <header>
+    <h1>SafeGully 🛠️</h1>
+    <p>Report and track urban hazards</p>
+  </header>
+
+  <main>
+    <div class="map-container">
+      <div id="map"></div>
+      <div id="hazard-list">
+        <h3>📋 Recent Reports</h3>
+        <div class="filters">
+          <button id="filter-all" class="active">All</button>
+          <button id="filter-reported">Reported</button>
+          <button id="filter-fixed">Fixed</button>
+        </div>
+        <div id="hazard-items"></div>
+      </div>
+    </div>
+
+    <section id="report-form">
+      <h2>✍️ Report a Hazard</h2>
+      <form id="hazard-form">
+        <select id="hazard-type" required>
+          <option value="">Select Hazard Type</option>
+          <option value="pothole">Pothole</option>
+          <option value="flooding">Flooding</option>
+          <option value="debris">Debris</option>
+          <option value="accident">Accident</option>
+        </select>
+        <input type="text" id="location-input" placeholder="Location name" required>
+        <textarea id="description-input" placeholder="Description..."></textarea>
+        <div class="photo-upload">
+          <label for="hazard-photo">📷 Attach Photo (Optional)</label>
+          <input type="file" id="hazard-photo" accept="image/*">
+        </div>
+        <button type="submit">Submit Report</button>
+      </form>
+      <button id="locate-me">📍 Use My Location</button>
+      <button id="export-data">📤 Export Data</button>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <!-- Heatmap Plugin -->
+  <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+  <!-- Main App -->
+  <script src="scripts/app.js"></script>
+</body>
+</html>
