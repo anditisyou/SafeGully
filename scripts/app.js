@@ -1,12 +1,15 @@
-// Map Initialization
 const map = L.map('map').setView([19.0760, 72.8777], 13);
 
-// Tile Layer
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+const lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+});
 
-// Hazard Configuration
+const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap contributors & © CARTO'
+});
+
+lightLayer.addTo(map);
+
 const hazardTypes = {
   pothole: { icon: '🕳️', color: '#e67e22' },
   flooding: { icon: '🌊', color: '#3498db' },
@@ -14,7 +17,6 @@ const hazardTypes = {
   accident: { icon: '⚠️', color: '#e74c3c' }
 };
 
-// Custom Icon Generator
 function createCustomIcon(type) {
   return L.divIcon({
     html: `<div style="background:${hazardTypes[type].color}; border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center; color:white; font-size:16px;">${hazardTypes[type].icon}</div>`,
@@ -23,21 +25,17 @@ function createCustomIcon(type) {
   });
 }
 
-// State Management
 let hazards = JSON.parse(localStorage.getItem('hazards')) || [];
 let lastClickedLatLng = null;
 let tempMarker = null;
 
-// Load Saved Hazards
 function loadHazards() {
-  // Clear existing markers first
   map.eachLayer(layer => {
     if (layer instanceof L.Marker) {
       map.removeLayer(layer);
     }
   });
 
-  // Add saved hazards
   hazards.forEach(hazard => {
     const marker = L.marker([hazard.lat, hazard.lng], { 
       icon: createCustomIcon(hazard.type),
@@ -63,14 +61,11 @@ function loadHazards() {
   updateHeatmap();
 }
 
-// Map Click Handler
 map.on('click', function(e) {
-  // Remove previous temp marker
   if (tempMarker) {
     map.removeLayer(tempMarker);
   }
 
-  // Store location and add temp marker
   lastClickedLatLng = e.latlng;
   tempMarker = L.marker([e.latlng.lat, e.latlng.lng], {
     icon: L.divIcon({
@@ -85,7 +80,6 @@ map.on('click', function(e) {
   showToast('Location selected. Now fill the form.');
 });
 
-// Form Submission
 document.getElementById('hazard-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
@@ -100,12 +94,10 @@ document.getElementById('hazard-form').addEventListener('submit', async function
   const photoInput = document.getElementById('hazard-photo');
   let photo = null;
 
-  // Process photo if uploaded
   if (photoInput.files[0]) {
     photo = await convertToBase64(photoInput.files[0]);
   }
 
-  // Create hazard object
   const hazard = {
     id: Date.now(),
     lat: lastClickedLatLng.lat,
@@ -118,22 +110,16 @@ document.getElementById('hazard-form').addEventListener('submit', async function
     timestamp: new Date().toISOString()
   };
 
-  // Save to storage
   hazards.push(hazard);
   localStorage.setItem('hazards', JSON.stringify(hazards));
-
-  // Reset form
   e.target.reset();
   lastClickedLatLng = null;
   if (tempMarker) map.removeLayer(tempMarker);
   tempMarker = null;
-
-  // Reload hazards
   loadHazards();
   showToast('Hazard reported successfully!');
 });
 
-// Helper Functions
 async function convertToBase64(file) {
   return new Promise((resolve) => {
     const reader = new FileReader();
@@ -155,7 +141,6 @@ function updateHazardList() {
       </div>
     `).join('');
 
-  // Add click handlers
   document.querySelectorAll('.hazard-item').forEach(item => {
     item.addEventListener('click', () => {
       const hazard = hazards.find(h => h.id == item.dataset.id);
@@ -178,14 +163,12 @@ function findMarkerByLatLng(latlng) {
 }
 
 function updateHeatmap() {
-  // Remove existing heatmap
   map.eachLayer(layer => {
     if (layer instanceof L.HeatLayer) {
       map.removeLayer(layer);
     }
   });
 
-  // Add new heatmap
   const points = hazards
     .filter(h => h.status !== 'fixed')
     .map(h => [h.lat, h.lng, 0.5]);
@@ -203,10 +186,9 @@ function showToast(message) {
   setTimeout(() => toast.remove(), 3000);
 }
 
-// Admin Functions
 window.markFixed = function(id) {
   const password = prompt("Enter admin password:");
-  if (password === "safe123") { // In production, use proper auth
+  if (password === "safe123") {
     hazards = hazards.map(h => 
       h.id === id ? { ...h, status: 'fixed' } : h
     );
@@ -218,7 +200,6 @@ window.markFixed = function(id) {
   }
 };
 
-// Filter Controls
 document.getElementById('filter-all').addEventListener('click', () => {
   setActiveFilter('all');
   map.eachLayer(layer => {
@@ -261,7 +242,6 @@ function setActiveFilter(filter) {
   document.getElementById(`filter-${filter}`).classList.add('active');
 }
 
-// Location Button
 document.getElementById('locate-me').addEventListener('click', () => {
   navigator.geolocation.getCurrentPosition(pos => {
     map.flyTo([pos.coords.latitude, pos.coords.longitude], 15);
@@ -271,7 +251,6 @@ document.getElementById('locate-me').addEventListener('click', () => {
   });
 });
 
-// Export Data
 document.getElementById('export-data').addEventListener('click', () => {
   const csv = 'ID,Latitude,Longitude,Type,Location,Description,Status,Date\n' +
     hazards.map(h => 
@@ -287,5 +266,37 @@ document.getElementById('export-data').addEventListener('click', () => {
   showToast('Data exported successfully');
 });
 
-// Initial Load
+const themeSwitcher = document.getElementById('theme-switcher');
+const body = document.body;
+
+function setMapLayer(theme) {
+  if (theme === 'dark') {
+    if (map.hasLayer(lightLayer)) {
+      map.removeLayer(lightLayer);
+    }
+    darkLayer.addTo(map);
+  } else {
+    if (map.hasLayer(darkLayer)) {
+      map.removeLayer(darkLayer);
+    }
+    lightLayer.addTo(map);
+  }
+}
+
+function setTheme(theme) {
+  body.classList.toggle('dark-mode', theme === 'dark');
+  themeSwitcher.checked = theme === 'dark';
+  setMapLayer(theme);
+  localStorage.setItem('theme', theme);
+}
+
+themeSwitcher.addEventListener('change', (e) => {
+  setTheme(e.target.checked ? 'dark' : 'light');
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+});
+
 loadHazards();

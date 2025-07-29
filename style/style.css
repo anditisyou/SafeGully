@@ -259,3 +259,121 @@ footer {
         padding-bottom: 120px; 
     }
 }
+
+
+
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+body.dark-mode #hazard-list,
+body.dark-mode #report-form {
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+body.dark-mode #hazard-list h3,
+body.dark-mode #report-form h2 {
+    border-bottom-color: #333;
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+    background-color: #333;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-mode .hazard-item {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .hazard-item:hover {
+    background-color: #3a3a3a;
+}
+
+body.dark-mode .hazard-item p {
+    color: #bbb;
+}
+
+body.dark-mode .filters button.active {
+    background: #3498db;
+}
+
+body.dark-mode .leaflet-layer,
+body.dark-mode .leaflet-control-zoom-in,
+body.dark-mode .leaflet-control-zoom-out,
+body.dark-mode .leaflet-control-attribution {
+    filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+}
+
+
+
+
+.theme-toggle-wrapper {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+}
+
+.theme-toggle-input {
+  display: none;
+}
+
+.theme-toggle-label {
+  background-color: #ccc;
+  border-radius: 20px;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s;
+  padding: 0 5px;
+  justify-content: space-between;
+}
+
+.theme-toggle-ball {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.theme-toggle-input:checked + .theme-toggle-label .theme-toggle-ball {
+  transform: translateX(30px);
+}
+
+.theme-icon {
+  font-size: 14px;
+  z-index: 2;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.sun {
+  margin-left: 6px;
+}
+
+.moon {
+  margin-right: 6px;
+}
+
+body.dark-mode .theme-toggle-label {
+  background-color: #555;
+}
