@@ -32,13 +32,21 @@
     <section id="report-form">
       <h2>✍️ Report a Hazard</h2>
       <form id="hazard-form">
-        <select id="hazard-type" required>
-          <option value="">Select Hazard Type</option>
-          <option value="pothole">Pothole</option>
-          <option value="flooding">Flooding</option>
-          <option value="debris">Debris</option>
-          <option value="accident">Accident</option>
-        </select>
+       <select id="hazard-type" required>
+           <option value="" disabled selected>Select Hazard Type</option>
+           <option value="pothole">Pothole</option>
+           <option value="waterlogging">Waterlogging</option>
+           <option value="open-manhole">Open Manhole</option>
+           <option value="garbage-dump">Garbage Dump</option>
+           <option value="accident">Accident</option>
+           <option value="flooding">Flooding</option>
+           <option value="fallen-tree">Fallen Tree</option>
+           <option value="streetlight-issue">Streetlight Issue</option>
+           <option value="road-crack">Road Crack</option>
+           <option value="illegal-parking">Illegal Parking</option>
+</select>
+
+
         <input type="text" id="location-input" placeholder="Location name" required>
         <textarea id="description-input" placeholder="Description..."></textarea>
         <div class="photo-upload">
