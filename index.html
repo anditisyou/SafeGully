@@ -1,62 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeGully 🛠️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeGully 🛠️ | Urban Hazard Reporter</title>
+
   <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/style.css" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("g7IgpA253Pfz3N927");
+    })();
+  </script>
 </head>
 <body>
-  <header>
-    <h1>SafeGully 🛠️</h1>
-    <p>Report and track urban hazards</p>
-  </header>
+  <!-- Header -->
+<header class="header animate__animated animate__fadeInDown">
+  <h1>🚧 SafeGully</h1>
+  <p>Your community-powered hazard reporting platform</p>
+  <button id="dark-toggle" aria-label="Toggle Dark Mode">🌓</button>
+</header>
 
+
+  <!-- Main Layout -->
   <main>
     <div class="map-container">
-      <div id="map"></div>
-      <div id="hazard-list">
+      <div id="map" aria-label="Interactive Map of Urban Hazards"></div>
+
+      <aside id="hazard-list">
         <h3>📋 Recent Reports</h3>
-        <div class="filters">
+        <div class="filters" role="group" aria-label="Filter Hazards by Status">
           <button id="filter-all" class="active">All</button>
           <button id="filter-reported">Reported</button>
           <button id="filter-fixed">Fixed</button>
         </div>
-        <div id="hazard-items"></div>
-      </div>
+        <div id="hazard-items" aria-live="polite"></div>
+      </aside>
     </div>
 
-    <section id="report-form">
-      <h2>✍️ Report a Hazard</h2>
-      <form id="hazard-form">
+    <!-- Hazard Report Form -->
+    <section id="report-form" class="form-section">
+      <h2>✍️ Submit a Hazard Report</h2>
+
+      <form id="hazard-form" class="form-card">
+        <!-- Hazard Info -->
         <select id="hazard-type" required>
-          <option value="">Select Hazard Type</option>
-          <option value="pothole">Pothole</option>
-          <option value="flooding">Flooding</option>
-          <option value="debris">Debris</option>
-          <option value="accident">Accident</option>
+          <option value="">⚠️ Select Hazard Type</option>
+          <option value="pothole">🕳️ Pothole</option>
+          <option value="flooding">🌊 Flooding</option>
+          <option value="debris">🗑️ Debris</option>
+          <option value="accident">⚠️ Accident</option>
         </select>
-        <input type="text" id="location-input" placeholder="Location name" required>
-        <textarea id="description-input" placeholder="Description..."></textarea>
+
+        <input type="text" id="location-input" placeholder="📍 Location" required />
+        <textarea id="description-input" placeholder="📝 Description (Optional)"></textarea>
+
+        <!-- User Info -->
+        <input type="text" id="user-name" placeholder="🙋 Your Name" required />
+        <input type="email" id="user-email" placeholder="📧 Your Email" required />
+        <input type="text" id="user-title" placeholder="✉️ Subject / Title" required />
+
+        <!-- Photo Upload -->
         <div class="photo-upload">
-          <label for="hazard-photo">📷 Attach Photo (Optional)</label>
-          <input type="file" id="hazard-photo" accept="image/*">
+          <label for="hazard-photo">📷 Attach a Photo (optional)</label>
+          <input type="file" id="hazard-photo" accept="image/*" />
         </div>
-        <button type="submit">Submit Report</button>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-primary">🚀 Submit Report</button>
       </form>
-      <button id="locate-me">📍 Use My Location</button>
-      <button id="export-data">📤 Export Data</button>
+
+      <!-- Utility Buttons -->
+      <div class="form-buttons">
+        <button id="locate-me" class="btn-secondary">📍 Use My Location</button>
+        <button id="export-data" class="btn-secondary">📤 Export Data</button>
+      </div>
     </section>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ for <strong>GSSoC'25</strong> | <span class="brand">SafeGully</span></p>
+    <p>
+      Contribute on
+      <a href="https://github.com/anditosyou/SafeGully" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <!-- Heatmap Plugin -->
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-  <!-- Main App -->
+
+  <!-- App Logic -->
   <script src="scripts/app.js"></script>
+
+  <!-- Dark Mode Toggle Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.getElementById("dark-toggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  });
+</script>
+
+
 </body>
 </html>
