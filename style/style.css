@@ -1,6 +1,6 @@
 /* Base Styles */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background: #f5f7fa;
   margin: 0;
   padding: 0;
@@ -58,18 +58,24 @@ header p {
 
 /* Form Styles */
 #report-form {
-  background: white;
+  background: #2c3e50 ;
   margin: 1rem;
   padding: 1.5rem;
-  border-radius: 8px;
+  border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 #report-form h2 {
-  margin-top: 0;
+    margin-top: 0;
+    text-align: center;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-size: 2rem;
+
 }
 
 input, textarea, select {
+  box-sizing: border-box;
   width: 100%;
   padding: 0.75rem;
   margin-bottom: 1rem;
@@ -105,6 +111,7 @@ button {
   transition: background 0.3s;
   margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  border-radius: 20px;
 }
 
 button:hover {
@@ -211,4 +218,55 @@ button:hover {
 
 .fix-btn:hover {
   background: #c0392b;
+}
+
+.file-upload-box {
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  background-color: #f9fbff;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.file-upload-box:hover {
+  background-color: #f0f4ff;
+}
+
+.upload-title {
+  font-weight: 600;
+  color: #333;
+  margin: 12px 0 4px;
+}
+
+.upload-subtext {
+  font-size: 14px;
+  color: #777;
+}
+
+.file-upload-box.dragover {
+  background-color: #e8f0fe;
+  border-color: #007BFF;
+}
+
+
+label{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;
+  font-weight: 400;
+  color: white;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.right-buttons {
+  display: flex;
+  gap: 0.5rem;
 }
