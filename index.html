@@ -4,10 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SafeGully 🛠️</title>
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
 </head>
 <body>
   <header>
@@ -19,7 +22,7 @@
     <div class="map-container">
       <div id="map"></div>
       <div id="hazard-list">
-        <h3>📋 Recent Reports</h3>
+        <h3><i class="fi fi-rr-list-check" style="margin-right: 6px;"></i>Recent Reports</h3>
         <div class="filters">
           <button id="filter-all" class="active">All</button>
           <button id="filter-reported">Reported</button>
@@ -30,7 +33,8 @@
     </div>
 
     <section id="report-form">
-      <h2>✍️ Report a Hazard</h2>
+      <h2><i class="fi fi-rr-document-signed" style="margin-right: 10px;"></i>Report a Hazard</h2>
+
       <form id="hazard-form">
        <select id="hazard-type" required>
            <option value="" disabled selected>Select Hazard Type</option>
@@ -49,14 +53,34 @@
 
         <input type="text" id="location-input" placeholder="Location name" required>
         <textarea id="description-input" placeholder="Description..."></textarea>
+
         <div class="photo-upload">
-          <label for="hazard-photo">📷 Attach Photo (Optional)</label>
-          <input type="file" id="hazard-photo" accept="image/*">
+          <label for="fileInput">Attach Photo (Optional)</label>
+          <div class="file-upload-box" id="drop-zone">
+            <input type="file" id="fileInput" accept="image/*" hidden />
+            <div class="upload-content" onclick="document.getElementById('fileInput').click()">
+              <i class="fi fi-rr-add-image" style="font-size: 36px;"></i>
+              <p class="upload-title">Browse Files</p>
+              <p class="upload-subtext">Drag and drop files here</p>
+            </div>
+          </div>
         </div>
-        <button type="submit">Submit Report</button>
+
+        <div class="form-buttons">
+          <button type="submit">
+            <i class="fi fi-rr-paper-plane" style="margin-right: 8px;"></i>Submit Report
+          </button>
+
+          <div class="right-buttons">
+            <button id="locate-me">
+              <i class="fi fi-rr-marker" style="margin-right: 8px;"></i>Use My Location
+            </button>
+            <button id="export-data">
+              <i class="fi fi-rr-upload" style="margin-right: 8px;"></i>Export Data
+            </button>
+          </div>
+        </div>
       </form>
-      <button id="locate-me">📍 Use My Location</button>
-      <button id="export-data">📤 Export Data</button>
     </section>
   </main>
 
