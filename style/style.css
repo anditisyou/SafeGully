@@ -1,181 +1,143 @@
-/* Base Styles */
+/* Reset and Base Styles */
 body {
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  background: #f5f7fa;
   margin: 0;
-  padding: 0;
+  font-family: 'Segoe UI', 'Cambria', 'Georgia', system-ui, -apple-system, sans-serif;
+  background-color: #f5f7fa;
   color: #333;
   line-height: 1.6;
+  transition: all 0.3s ease;
 }
 
+/* Header */
 header {
-  background-color: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50, #1a252f);
   color: white;
-  text-align: center;
   padding: 1.5rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 header p {
-  margin: 0.5rem 0 0;
+  margin: 0;
+  font-size: 1.1rem;
   opacity: 0.9;
 }
 
-/* Map Layout */
+/* Dark Mode Toggle Button */
+#dark-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 1.4rem;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 50px;
+  background-color: rgba(255,255,255,0.2);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+#dark-toggle:hover {
+  background-color: rgba(255,255,255,0.3);
+  transform: scale(1.05);
+}
+
+/* Map & Sidebar Layout */
 .map-container {
   display: flex;
-  height: 60vh;
-  margin: 1rem;
-  gap: 1rem;
-  overflow: hidden;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 #map {
   flex: 2;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 1;
+  min-height: 500px;
+  height: 65vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 #hazard-list {
-  width: 300px;
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  padding: 1rem;
-  overflow-y: auto; 
   flex: 1;
-}
-
-@media (max-width: 768px) {
-  .map-container {
-    flex-direction: column;
-  }
-
-  #map {
-    width: 100%;
-    height: 300px;
-  }
-
-  #hazard-list {
-    width: 80%;
-    min-height: 150px;
-  }
+  min-width: 300px;
+  max-height: 65vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 #hazard-list h3 {
   margin-top: 0;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
 }
 
-/* Form Styles */
-#report-form {
-  background: #2c3e50 ;
-  margin: 1rem;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+/* Filters */
+.filters {
+  display: flex;
+  gap: 0.5rem;
+  margin: 1rem 0;
 }
 
-#report-form h2 {
-    margin-top: 0;
-    text-align: center;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    color: white;
-    font-size: 2rem;
-
-}
-
-input, textarea, select {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 0.75rem;
-  margin-bottom: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 1rem;
-}
-
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
-
-.photo-upload {
-  margin-bottom: 1rem;
-}
-
-.photo-upload label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-button {
-  background-color: #3498db;
-  color: white;
+.filters button {
+  flex: 1;
+  padding: 0.6rem;
   border: none;
-  padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 8px;
+  background: #ecf0f1;
   cursor: pointer;
-  font-size: 1rem;
-  transition: background 0.3s;
-  margin-right: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 20px;
-}
-@media (max-width:300px){
-  button {
-    font-size: 15px;
-    padding: 15px 10px;
-  }
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  background-color: #2980b9;
-}
-
-#locate-me {
-  background-color: #27ae60;
-}
-
-#locate-me:hover {
-  background-color: #219653;
-}
-
-#export-data {
-  background-color: #9b59b6;
-}
-
-#export-data:hover {
-  background-color: #8e44ad;
+.filters button.active,
+.filters button:hover {
+  background: #3498db;
+  color: white;
+  transform: translateY(-2px);
 }
 
 /* Hazard Items */
 .hazard-item {
-  padding: 0.75rem;
-  margin-bottom: 0.75rem;
-  border-radius: 4px;
-  background: #f8f9fa;
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
 }
 
 .hazard-item:hover {
-  transform: translateX(5px);
-  background: #e9ecef;
+  background: #f8f9fa;
+  transform: translateX(3px);
 }
 
-.hazard-item strong {
-  display: block;
-  margin-bottom: 0.25rem;
+.hazard-item h4 {
+  margin: 0 0 0.3rem;
+  color: #2c3e50;
 }
 
 .hazard-item p {
@@ -184,161 +146,340 @@ button:hover {
   color: #666;
 }
 
-.filters {
-  margin-bottom: 1rem;
+/* Report Form */
+#report-form {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  margin: 1.5rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  max-width: 1400px;
 }
 
-.filters button {
-  padding: 0.5rem;
-  font-size: 0.9rem;
-}
-
-.filters button.active {
-  background: #2c3e50;
-}
-
-/* Toast Notifications */
-.toast {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2c3e50;
+#report-form h2 {
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-family: 'Cambria', 'Georgia', serif;
   color: white;
-  padding: 12px 24px;
-  border-radius: 4px;
-  z-index: 1000;
-  animation: fadeInOut 3s forwards;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-@keyframes fadeInOut {
-  0% { opacity: 0; bottom: -50px; }
-  10% { opacity: 1; bottom: 20px; }
-  90% { opacity: 1; bottom: 20px; }
-  100% { opacity: 0; bottom: -50px; }
+/* Form Elements */
+form {
+  display: grid;
+  gap: 1.2rem;
 }
 
-/* Popup Styles */
-.leaflet-popup-content {
-  min-width: 200px;
-}
-
-.leaflet-popup-content img {
-  max-width: 100%;
-  margin-top: 0.5rem;
-  border-radius: 4px;
-}
-@media (max-width: 768px) {
-  .leaflet-popup-content {
-    min-width: 150px;
-    max-width: 80vw;
-    word-wrap: break-word;
-  }
-}
-
-.fix-btn {
-  display: block;
+input, textarea, select {
   width: 100%;
-  margin-top: 0.5rem;
-  background: #e74c3c;
-  color: white;
-  text-align: center;
-  padding: 0.25rem;
-  border-radius: 3px;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  transition: all 0.3s ease;
 }
 
-.fix-btn:hover {
-  background: #c0392b;
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
 }
 
-
+/* Photo Upload */
 .file-upload-box {
-  border: 2px dashed #ccc;
+  border: 2px dashed rgba(255,255,255,0.3);
   border-radius: 10px;
-  padding: 40px;
+  padding: 2rem;
   text-align: center;
-  background-color: #f9fbff;
-  transition: background-color 0.2s ease;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 0.5rem;
 }
 
 .file-upload-box:hover {
-  background-color: #f0f4ff;
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.file-upload-box.dragover {
+  background: rgba(255,255,255,0.2);
+  border-color: #3498db;
 }
 
 .upload-title {
   font-weight: 600;
-  color: #333;
+  color: white;
   margin: 12px 0 4px;
 }
 
 .upload-subtext {
-  font-size: 14px;
-  color: #777;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
 }
 
-.file-upload-box.dragover {
-  background-color: #e8f0fe;
-  border-color: #007BFF;
-}
-
-
-label{
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: larger;
-  font-weight: 400;
+label {
+  font-family: 'Cambria', 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: white;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
+/* Buttons */
 .form-buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+button[type="submit"] {
+  background: #27ae60;
+  color: white;
+  box-shadow: 0 4px 10px rgba(39,174,96,0.3);
+}
+
+button[type="submit"]:hover {
+  background: #219955;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39,174,96,0.4);
 }
 
 .right-buttons {
   display: flex;
-  gap: 0.5rem;
-}
-=======
-.custom-toast {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #2ecc71;
-  color: white;
-  padding: 20px 30px;
-  border-radius: 12px;
-  font-size: 18px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-  z-index: 9999;
-  animation: popFadeIn 0.4s ease;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  gap: 0.8rem;
 }
 
-.custom-toast .toast-icon {
-  font-size: 24px;
-  margin-right: 12px;
+.btn-secondary {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.custom-toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: #27ae60;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 9999;
+  opacity: 1;
+  transition: all 0.5s ease;
+  max-width: 350px;
 }
 
 .custom-toast.hide {
   opacity: 0;
-  transform: translate(-50%, -40%);
+  transform: translateY(20px);
 }
 
-@keyframes popFadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -60%) scale(0.95);
+.toast-icon {
+  font-size: 1.5rem;
+}
+
+.toast-message {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* Footer */
+footer {
+  background: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
+}
+
+footer a {
+  color: #f1c40f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  color: #f39c12;
+  text-decoration: underline;
+}
+
+.brand {
+  font-weight: 700;
+  color: #f1c40f;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+  .map-container {
+    flex-direction: column;
   }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+  
+  #map {
+    width: 100%;
+    height: 50vh;
   }
+  
+  #hazard-list {
+    width: 100%;
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    padding: 1.2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  #dark-toggle {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+  }
+  
+  .map-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  #report-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .right-buttons {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  button {
+    width: 100%;
+  }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.dark-mode header {
+  background: linear-gradient(135deg, #121212, #1e1e1e);
+}
+
+body.dark-mode #hazard-list {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
+}
+
+body.dark-mode #hazard-list h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .hazard-item {
+  border-bottom-color: #333;
+}
+
+body.dark-mode .hazard-item:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .hazard-item h4 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .hazard-item p {
+  color: #aaa;
+}
+
+body.dark-mode .filters button {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+body.dark-mode .filters button.active,
+body.dark-mode .filters button:hover {
+  background: #3498db;
+  color: white;
+}
+
+body.dark-mode #report-form {
+  background: linear-gradient(135deg, #1e1e1e, #252525);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-mode .file-upload-box {
+  background: rgba(42,42,42,0.5);
+  border-color: #444;
+}
+
+body.dark-mode .file-upload-box:hover {
+  background: rgba(42,42,42,0.7);
+}
+
+body.dark-mode label {
+  color: #e0e0e0;
+}
+
+body.dark-mode footer {
+  background-color: #1a1a1a;
+}
+
+body.dark-mode a {
+  color: #64b5f6;
 }

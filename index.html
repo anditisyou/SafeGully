@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafeGully 🛠️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeGully 🛠️ | Urban Hazard Reporter</title>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/style.css" />
+  
+  <!-- Flaticon CSS -->
   <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+
+  <!-- EmailJS -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function () {
+      emailjs.init("g7IgpA253Pfz3N927");
+    })();
+  </script>
 </head>
 <body>
-  <header>
-    <h1>SafeGully 🛠️</h1>
-    <p>Report and track urban hazards</p>
+  <!-- Header -->
+  <header class="header animate__animated animate__fadeInDown">
+    <h1>🚧 SafeGully</h1>
+    <p>Your community-powered hazard reporting platform</p>
+    <button id="dark-toggle" aria-label="Toggle Dark Mode">🌓</button>
   </header>
 
+  <!-- Main Layout -->
   <main>
     <div class="map-container">
-      <div id="map"></div>
-      <div id="hazard-list">
-        <h3><i class="fi fi-rr-list-check" style="margin-right: 6px;"></i>Recent Reports</h3>
-        <div class="filters">
+      <div id="map" aria-label="Interactive Map of Urban Hazards"></div>
+
+      <aside id="hazard-list">
+        <h3><i class="fi fi-rr-list-check" style="margin-right: 6px;"></i> Recent Reports</h3>
+        <div class="filters" role="group" aria-label="Filter Hazards by Status">
           <button id="filter-all" class="active">All</button>
           <button id="filter-reported">Reported</button>
           <button id="filter-fixed">Fixed</button>
         </div>
-        <div id="hazard-items"></div>
-      </div>
+        <div id="hazard-items" aria-live="polite"></div>
+      </aside>
     </div>
 
-    <section id="report-form">
-      <h2><i class="fi fi-rr-document-signed" style="margin-right: 10px;"></i>Report a Hazard</h2>
+    <!-- Hazard Report Form -->
+    <section id="report-form" class="form-section">
+      <h2><i class="fi fi-rr-document-signed" style="margin-right: 10px;"></i> Submit a Hazard Report</h2>
 
-      <form id="hazard-form">
-       <select id="hazard-type" required>
-           <option value="" disabled selected>Select Hazard Type</option>
-           <option value="pothole">Pothole</option>
-           <option value="waterlogging">Waterlogging</option>
-           <option value="open-manhole">Open Manhole</option>
-           <option value="garbage-dump">Garbage Dump</option>
-           <option value="accident">Accident</option>
-           <option value="flooding">Flooding</option>
-           <option value="fallen-tree">Fallen Tree</option>
-           <option value="streetlight-issue">Streetlight Issue</option>
-           <option value="road-crack">Road Crack</option>
-           <option value="illegal-parking">Illegal Parking</option>
-</select>
+      <form id="hazard-form" class="form-card">
+        <!-- Hazard Info -->
+        <select id="hazard-type" required>
+          <option value="" disabled selected>Select Hazard Type</option>
+          <option value="pothole">Pothole</option>
+          <option value="waterlogging">Waterlogging</option>
+          <option value="open-manhole">Open Manhole</option>
+          <option value="garbage-dump">Garbage Dump</option>
+          <option value="accident">Accident</option>
+          <option value="flooding">Flooding</option>
+          <option value="fallen-tree">Fallen Tree</option>
+          <option value="streetlight-issue">Streetlight Issue</option>
+          <option value="road-crack">Road Crack</option>
+          <option value="illegal-parking">Illegal Parking</option>
+        </select>
 
+        <input type="text" id="location-input" placeholder="📍 Location" required />
+        <textarea id="description-input" placeholder="📝 Description (Optional)"></textarea>
 
-        <input type="text" id="location-input" placeholder="Location name" required>
-        <textarea id="description-input" placeholder="Description..."></textarea>
-
+        <!-- Photo Upload -->
         <div class="photo-upload">
-          <label for="fileInput">Attach Photo (Optional)</label>
+          <label for="fileInput">📷 Attach Photo (Optional)</label>
           <div class="file-upload-box" id="drop-zone">
             <input type="file" id="fileInput" accept="image/*" hidden />
             <div class="upload-content" onclick="document.getElementById('fileInput').click()">
@@ -65,17 +82,23 @@
           </div>
         </div>
 
+        <!-- User Info -->
+        <input type="text" id="user-name" placeholder="🙋 Your Name" required />
+        <input type="email" id="user-email" placeholder="📧 Your Email" required />
+        <input type="text" id="user-title" placeholder="✉️ Subject / Title" required />
+
+        <!-- Submit Button -->
         <div class="form-buttons">
-          <button type="submit">
-            <i class="fi fi-rr-paper-plane" style="margin-right: 8px;"></i>Submit Report
+          <button type="submit" class="btn-primary">
+            <i class="fi fi-rr-paper-plane" style="margin-right: 8px;"></i> Submit Report
           </button>
 
           <div class="right-buttons">
-            <button id="locate-me">
-              <i class="fi fi-rr-marker" style="margin-right: 8px;"></i>Use My Location
+            <button id="locate-me" class="btn-secondary">
+              <i class="fi fi-rr-marker" style="margin-right: 8px;"></i> Use My Location
             </button>
-            <button id="export-data">
-              <i class="fi fi-rr-upload" style="margin-right: 8px;"></i>Export Data
+            <button id="export-data" class="btn-secondary">
+              <i class="fi fi-rr-upload" style="margin-right: 8px;"></i> Export Data
             </button>
           </div>
         </div>
@@ -83,11 +106,31 @@
     </section>
   </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ for <strong>GSSoC'25</strong> | <span class="brand">SafeGully</span></p>
+    <p>
+      Contribute on
+      <a href="https://github.com/anditosyou/SafeGully" target="_blank">GitHub</a>
+    </p>
+  </footer>
+
   <!-- Leaflet JS -->
- <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <!-- Heatmap Plugin -->
   <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
-  <!-- Main App -->
+
+  <!-- App Logic -->
   <script src="scripts/app.js"></script>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const toggleBtn = document.getElementById("dark-toggle");
+      toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+      });
+    });
+  </script>
 </body>
 </html>
