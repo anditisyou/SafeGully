@@ -197,11 +197,21 @@ function updateHeatmap() {
 
 function showToast(message) {
   const toast = document.createElement('div');
-  toast.className = 'toast';
-  toast.textContent = message;
+  toast.className = 'custom-toast';
+
+  toast.innerHTML = `
+    <div class="toast-icon">✅</div>
+    <div class="toast-message">${message}</div>
+  `;
+
   document.body.appendChild(toast);
-  setTimeout(() => toast.remove(), 3000);
+
+  setTimeout(() => {
+    toast.classList.add('hide');
+    setTimeout(() => toast.remove(), 500);
+  }, 3000);
 }
+
 
 // Admin Functions
 window.markFixed = function(id) {
