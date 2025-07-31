@@ -8,6 +8,16 @@ body {
   transition: all 0.3s ease;
 }
 
+
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.2rem;
+}
+header p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
 /* Header */
 header {
   background: linear-gradient(135deg, #2c3e50, #1a252f);
@@ -223,7 +233,7 @@ input:focus, textarea:focus, select:focus {
 
 label {
   font-family: 'Cambria', 'Georgia', serif;
-  font-size: 1.1rem;
+  font-size: 1.8rem;
   font-weight: 500;
   color: white;
   display: block;
@@ -316,31 +326,74 @@ button[type="submit"]:hover {
 }
 
 /* Footer */
+.footer-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 footer {
-  background: #2c3e50;
-  color: white;
+  background: #1f2a38;
+  color: #f0f0f0;
+  padding: 1rem 0.5rem;
   text-align: center;
-  padding: 1.5rem;
-  margin-top: 3rem;
-  font-size: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.85rem;
 }
 
-footer p {
-  margin: 0.5rem 0;
+.footer-text {
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+  font-size: 0.85rem;
+  opacity: 0.85;
 }
 
-footer a {
+.footer-links {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+footer {
+  padding: 1rem;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.footer-links a {
   color: #f1c40f;
   text-decoration: none;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-footer a:hover {
+.footer-links a:hover {
   color: #f39c12;
   text-decoration: underline;
 }
 
+.brand {
+  font-weight: bold;
+  color: #f1c40f;
+}
+
+/* Dark Mode Footer */
+body.dark-mode footer {
+  background: #111820;
+  border-top: 1px solid #2c2c2c;
+}
+
+body.dark-mode .footer-text,
+body.dark-mode .footer-links a {
+  color: #dcdcdc;
+}
+
+body.dark-mode .footer-links a:hover {
+  color: #64b5f6;
+}
 .brand {
   font-weight: 700;
   color: #f1c40f;
@@ -482,4 +535,231 @@ body.dark-mode footer {
 
 body.dark-mode a {
   color: #64b5f6;
+}
+.location-dropdowns {
+  display: grid;
+  gap: 1rem;
+}
+
+.location-dropdowns select,
+#full-address {
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: rgba(255,255,255,0.95);
+  color: #333;
+}
+/* Make all inputs, selects, textarea consistent in width & style */
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.2);
+  background: rgba(255, 255, 255, 0.9);
+  color: #333;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  resize: vertical; /* allow vertical resize only for textarea */
+}
+
+/* Optional: uniform min-height for textarea */
+textarea {
+  min-height: 120px;
+}
+
+/* Fix select dropdown arrow spacing if needed */
+select {
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+ /* background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'5'%20viewBox%3D'0%200%2010%205'%20xmlns%3D'http://www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l5%205%205-5z'%20fill%3D'%23333'/%3E%3C/svg%3E");*/
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px 5px;
+  padding-right: 2rem;
+}
+select {
+  padding-right: 2.2rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+.location-dropdowns {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-dropdowns select {
+  flex: 1;
+}
+input, select, textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+select::-moz-focus-inner {
+  border: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+select {
+  appearance: none; /* remove default */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width='14'%20height='8'%20viewBox='0%200%2014%208'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201l6%206%206-6'%20stroke='%23666'%20stroke-width='2'%20fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 8px;
+
+  padding-right: 2.5rem; /* Make space for arrow */
+  cursor: pointer;
+}
+/* Apply to your state and city dropdowns */
+#state-dropdown,
+#city-dropdown {
+  appearance: none;          /* Remove default arrow */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px 35px 10px 12px; /* Space for the arrow on the right */
+  font-size: 1rem;
+  cursor: pointer;
+
+  /* Custom dropdown arrow using SVG */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width='14'%20height='8'%20viewBox='0%200%2014%208'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201l6%206%206-6'%20stroke='%23333'%20stroke-width='2'%20fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px 8px;
+}
+
+/* Hide default arrow on IE */
+#state-dropdown::-ms-expand,
+#city-dropdown::-ms-expand {
+  display: none;
+}
+
+
+select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+  outline: none;
+}
+
+select::-moz-focus-inner {
+  border: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+.location-dropdowns {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-dropdowns select {
+  flex: 1;
+}
+/* Enhanced Form Elements Styling */
+input, select, textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1.8px solid rgba(0, 0, 0, 0.15);
+  box-shadow: inset 2px 2px 5px #d1d1d9,
+              inset -5px -5px 8px #ffffff;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: 
+    border-color 0.3s ease, 
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    transform 0.15s ease;
+  cursor: text;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* Focus state */
+input:focus, textarea:focus, select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+  background: linear-gradient(145deg, #f0faff, #d9f0ff);
+  outline: none;
+  transform: scale(1.02);
+  cursor: text;
+}
+
+/* Textarea min height */
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Dropdown arrow */
+select {
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width='14'%20height='8'%20viewBox='0%200%2014%208'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201l6%206%206-6'%20stroke='%23666'%20stroke-width='2'%20fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 14px 8px;
+  cursor: pointer;
+}
+
+/* Hide default arrows for Firefox and IE */
+select::-ms-expand {
+  display: none;
+}
+select::-moz-focus-inner {
+  border: 0;
+}
+
+/* Location dropdown container */
+.location-dropdowns {
+  display: flex;
+  gap: 1rem;
+}
+
+.location-dropdowns select {
+  flex: 1;
+}
+
+/* Placeholder text style */
+::placeholder {
+  color: #999;
+  opacity: 1;
+  font-style: italic;
+}
+
+/* Disabled state */
+input:disabled, select:disabled, textarea:disabled {
+  background: #e9ecef;
+  color: #999;
+  cursor: not-allowed;
+  box-shadow: none;
+  border-color: #ced4da;
+  transform: none;
+}
+
+/* Smooth transition for all */
+input, select, textarea {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
