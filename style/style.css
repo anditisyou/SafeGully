@@ -1,49 +1,57 @@
 /* Reset and Base Styles */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f9f9fc;
+  font-family: 'Segoe UI', 'Cambria', 'Georgia', system-ui, -apple-system, sans-serif;
+  background-color: #f5f7fa;
   color: #333;
   line-height: 1.6;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 /* Header */
 header {
-  background: #2c3e50;
+  background: linear-gradient(135deg, #2c3e50, #1a252f);
   color: white;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 header h1 {
   margin: 0;
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
 header p {
-  margin: 0.5rem 0 0;
-  font-size: 1rem;
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
 /* Dark Mode Toggle Button */
 #dark-toggle {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
   font-size: 1.4rem;
   padding: 8px 14px;
   border: none;
-  border-radius: 6px;
-  background-color: #ecf0f1;
-  color: #2c3e50;
+  border-radius: 50px;
+  background-color: rgba(255,255,255,0.2);
+  color: white;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 #dark-toggle:hover {
-  background-color: #d0d0d0;
+  background-color: rgba(255,255,255,0.3);
   transform: scale(1.05);
 }
 
@@ -51,131 +59,251 @@ header p {
 .map-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 #map {
   flex: 2;
   min-height: 500px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  height: 65vh;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 #hazard-list {
   flex: 1;
-  max-height: 500px;
+  min-width: 300px;
+  max-height: 65vh;
   overflow-y: auto;
   background: white;
-  border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.1);
 }
 
 #hazard-list h3 {
   margin-top: 0;
+  font-size: 1.4rem;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
 }
 
 /* Filters */
 .filters {
   display: flex;
   gap: 0.5rem;
-  margin: 0.5rem 0 1rem;
+  margin: 1rem 0;
 }
 
 .filters button {
   flex: 1;
-  padding: 0.5rem;
+  padding: 0.6rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   background: #ecf0f1;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
 .filters button.active,
 .filters button:hover {
   background: #3498db;
   color: white;
+  transform: translateY(-2px);
 }
 
 /* Hazard Items */
 .hazard-item {
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+  padding: 0.8rem;
+  border-bottom: 1px solid #eee;
   cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 6px;
+  margin-bottom: 0.5rem;
 }
 
 .hazard-item:hover {
-  background: #f1f1f1;
+  background: #f8f9fa;
+  transform: translateX(3px);
+}
+
+.hazard-item h4 {
+  margin: 0 0 0.3rem;
+  color: #2c3e50;
+}
+
+.hazard-item p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 /* Report Form */
 #report-form {
-  background: white;
-  margin: 1rem;
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  margin: 1.5rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  max-width: 1400px;
 }
 
 #report-form h2 {
-  margin-top: 0;
-}
-
-form input,
-form textarea,
-form select {
-  width: 100%;
-  margin-bottom: 1rem;
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background: white;
-  color: #333;
-}
-
-form button {
-  background: #2c3e50;
+  margin: 0 0 1.5rem;
+  text-align: center;
+  font-family: 'Cambria', 'Georgia', serif;
   color: white;
-  padding: 0.7rem 1.2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Form Elements */
+form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.9);
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52,152,219,0.2);
+}
+
+/* Photo Upload */
+.file-upload-box {
+  border: 2px dashed rgba(255,255,255,0.3);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.file-upload-box:hover {
+  background: rgba(255,255,255,0.15);
+  border-color: rgba(255,255,255,0.5);
+}
+
+.file-upload-box.dragover {
+  background: rgba(255,255,255,0.2);
+  border-color: #3498db;
+}
+
+.upload-title {
+  font-weight: 600;
+  color: white;
+  margin: 12px 0 4px;
+}
+
+.upload-subtext {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+label {
+  font-family: 'Cambria', 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button {
+  padding: 0.9rem 1.5rem;
   font-size: 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 50px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-form button:hover {
-  background: #1a252f;
+button[type="submit"] {
+  background: #27ae60;
+  color: white;
+  box-shadow: 0 4px 10px rgba(39,174,96,0.3);
 }
 
-.photo-upload {
-  margin-bottom: 1rem;
+button[type="submit"]:hover {
+  background: #219955;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(39,174,96,0.4);
+}
+
+.right-buttons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  backdrop-filter: blur(5px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.3);
+  transform: translateY(-2px);
 }
 
 /* Toast Notification */
 .custom-toast {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
+  bottom: 2rem;
+  right: 2rem;
   background: #27ae60;
   color: white;
   padding: 1rem 1.5rem;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.8rem;
   z-index: 9999;
   opacity: 1;
-  transition: opacity 0.5s ease;
+  transition: all 0.5s ease;
+  max-width: 350px;
 }
 
 .custom-toast.hide {
   opacity: 0;
+  transform: translateY(20px);
 }
 
 .toast-icon {
@@ -184,6 +312,7 @@ form button:hover {
 
 .toast-message {
   font-size: 1rem;
+  line-height: 1.4;
 }
 
 /* Footer */
@@ -191,65 +320,129 @@ footer {
   background: #2c3e50;
   color: white;
   text-align: center;
-  padding: 1.2rem;
-  margin-top: 2rem;
-  font-size: 0.95rem;
+  padding: 1.5rem;
+  margin-top: 3rem;
+  font-size: 1rem;
+}
+
+footer p {
+  margin: 0.5rem 0;
 }
 
 footer a {
   color: #f1c40f;
   text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 footer a:hover {
+  color: #f39c12;
   text-decoration: underline;
 }
 
-/* Responsive */
-@media screen and (max-width: 768px) {
+.brand {
+  font-weight: 700;
+  color: #f1c40f;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
   .map-container {
     flex-direction: column;
   }
-
-  #map,
+  
+  #map {
+    width: 100%;
+    height: 50vh;
+  }
+  
   #hazard-list {
     width: 100%;
-    min-height: 300px;
+    max-height: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    padding: 1.2rem 1rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  #dark-toggle {
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+  }
+  
+  .map-container {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  #report-form {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+  
+  .form-buttons {
+    flex-direction: column;
+  }
+  
+  .right-buttons {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  button {
+    width: 100%;
   }
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #1c1c1c;
-  color: #f4f4f4;
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 body.dark-mode header {
-  background-color: #1f1f1f;
-  color: #f4f4f4;
-}
-
-body.dark-mode form input,
-body.dark-mode form textarea,
-body.dark-mode form select {
-  background-color: #2c2c2c;
-  color: #f4f4f4;
-  border: 1px solid #666;
+  background: linear-gradient(135deg, #121212, #1e1e1e);
 }
 
 body.dark-mode #hazard-list {
-  background-color: #2b2b2b;
-  color: #f4f4f4;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #333;
 }
 
-body.dark-mode #report-form {
-  background-color: #2b2b2b;
-  color: #f4f4f4;
+body.dark-mode #hazard-list h3 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .hazard-item {
+  border-bottom-color: #333;
+}
+
+body.dark-mode .hazard-item:hover {
+  background-color: #2a2a2a;
+}
+
+body.dark-mode .hazard-item h4 {
+  color: #e0e0e0;
+}
+
+body.dark-mode .hazard-item p {
+  color: #aaa;
 }
 
 body.dark-mode .filters button {
-  background-color: #3c3c3c;
-  color: #ddd;
+  background-color: #333;
+  color: #e0e0e0;
 }
 
 body.dark-mode .filters button.active,
@@ -258,11 +451,35 @@ body.dark-mode .filters button:hover {
   color: white;
 }
 
+body.dark-mode #report-form {
+  background: linear-gradient(135deg, #1e1e1e, #252525);
+}
+
+body.dark-mode input,
+body.dark-mode textarea,
+body.dark-mode select {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+body.dark-mode .file-upload-box {
+  background: rgba(42,42,42,0.5);
+  border-color: #444;
+}
+
+body.dark-mode .file-upload-box:hover {
+  background: rgba(42,42,42,0.7);
+}
+
+body.dark-mode label {
+  color: #e0e0e0;
+}
+
 body.dark-mode footer {
-  background-color: #111;
-  color: #ccc;
+  background-color: #1a1a1a;
 }
 
 body.dark-mode a {
-  color: #66bfff;
+  color: #64b5f6;
 }
