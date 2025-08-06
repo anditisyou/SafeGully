@@ -27,8 +27,17 @@
   <header class="header animate__animated animate__fadeInDown">
     <h1>🚧 SafeGully</h1>
     <p>Your community-powered hazard reporting platform</p>
-    <button id="dark-toggle" aria-label="Toggle Dark Mode">🌓</button>
+    <button id="dark-toggle" aria-label="Toggle Dark Mode"><span id="toggle-icon">🌙</span></button>
   </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2>Empowering Safer Streets, Together</h2>
+      <p>Report urban hazards in your city and help build a safer community for everyone.</p>
+      <button class="hero-cta" onclick="document.getElementById('report-form').scrollIntoView({ behavior: 'smooth' });">Report a Hazard</button>
+    </div>
+  </section>
 
   <!-- Main Layout -->
   <main>
@@ -156,9 +165,19 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const toggleBtn = document.getElementById("dark-toggle");
+      const iconSpan = document.getElementById("toggle-icon");
+      function updateIcon() {
+        if (document.body.classList.contains("dark-mode")) {
+          iconSpan.textContent = "☀️";
+        } else {
+          iconSpan.textContent = "🌙";
+        }
+      }
       toggleBtn.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
+        updateIcon();
       });
+      updateIcon();
     });
   const indiaStatesCities = {
   "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Tirupati", "Kurnool", "Rajahmundry", "Anantapur", "Kakinada", "Ongole", "Chittoor", "Eluru", "Kadapa", "Nandyal", "Machilipatnam", "Srikakulam", "Tenali", "Proddatur", "Amalapuram", "Adoni"],

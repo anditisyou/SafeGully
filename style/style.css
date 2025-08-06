@@ -8,13 +8,207 @@ html, body {
   overflow-x: hidden;
   width: 100%;
 }
+
+/* Enhanced Background Animations */
 body {
   margin: 0;
   font-family: 'Segoe UI', 'Cambria', 'Georgia', system-ui, -apple-system, sans-serif;
-  background-color: #f5f7fa;
+  background: 
+    linear-gradient(-45deg, #1e3c72, #2a5298, #6dd5ed, #2193b0),
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
+  background-size: 400% 400%, 200% 200%, 300% 300%, 250% 250%;
+  animation: 
+    gradientShift 15s ease infinite,
+    floatParticles 20s ease-in-out infinite,
+    pulseGlow 8s ease-in-out infinite;
   color: #333;
   line-height: 1.6;
   transition: all 0.3s ease;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Light mode enhanced background */
+body:not(.dark-mode) {
+  background: 
+    linear-gradient(-45deg, #f5f7fa, #c3cfe2, #a1c4fd, #c2e9fb),
+    radial-gradient(circle at 20% 80%, rgba(100, 149, 237, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 182, 193, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(173, 216, 230, 0.2) 0%, transparent 50%),
+    /* New dark animated gradients */
+    radial-gradient(circle at 60% 70%, rgba(30,30,30,0.13) 0%, transparent 60%),
+    radial-gradient(circle at 10% 30%, rgba(60,60,60,0.10) 0%, transparent 60%);
+  background-size: 400% 400%, 200% 200%, 300% 300%, 250% 250%, 300% 300%, 200% 200%;
+  animation: 
+    gradientShift 15s ease infinite,
+    floatParticles 20s ease-in-out infinite,
+    pulseGlow 8s ease-in-out infinite;
+  color: #333;
+}
+
+/* Dark mode enhanced background */
+body.dark-mode {
+  background: 
+    linear-gradient(-45deg, #232526, #414345, #232526, #485563),
+    radial-gradient(circle at 20% 80%, rgba(75, 0, 130, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 20, 147, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 191, 255, 0.3) 0%, transparent 50%);
+  background-size: 400% 400%, 200% 200%, 300% 300%, 250% 250%;
+  animation: 
+    gradientShift 15s ease infinite,
+    floatParticles 20s ease-in-out infinite,
+    pulseGlow 8s ease-in-out infinite;
+  color: #f3f3f3;
+}
+
+/* Animation Keyframes */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%, 0% 0%, 0% 0%, 0% 0%;
+  }
+  25% {
+    background-position: 100% 50%, 100% 100%, 100% 0%, 0% 100%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 100%, 100% 100%, 100% 0%;
+  }
+  75% {
+    background-position: 0% 50%, 100% 0%, 0% 100%, 100% 100%;
+  }
+  100% {
+    background-position: 0% 50%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
+@keyframes floatParticles {
+  0%, 100% {
+    background-position: 0% 50%, 0% 0%, 0% 0%, 0% 0%;
+  }
+  25% {
+    background-position: 100% 50%, 100% 100%, 50% 50%, 25% 75%;
+  }
+  50% {
+    background-position: 100% 50%, 50% 50%, 100% 100%, 75% 25%;
+  }
+  75% {
+    background-position: 0% 50%, 75% 25%, 25% 75%, 100% 100%;
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    filter: brightness(1) saturate(1);
+  }
+  50% {
+    filter: brightness(1.1) saturate(1.2);
+  }
+}
+
+/* Floating elements animation */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: float 6s ease-in-out infinite;
+}
+
+body::before {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+body::after {
+  top: 60%;
+  right: 15%;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.7;
+  }
+}
+
+/* Light mode with light backgrounds and dark text */
+body:not(.dark-mode) {
+  background: linear-gradient(-45deg, #f5f7fa, #c3cfe2, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #333;
+}
+
+/* Light mode sections with light backgrounds */
+body:not(.dark-mode) header,
+body:not(.dark-mode) .hero-section,
+body:not(.dark-mode) #report-form,
+body:not(.dark-mode) #hazard-list,
+body:not(.dark-mode) footer {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #333;
+}
+
+/* Light mode text colors */
+body:not(.dark-mode) h1,
+body:not(.dark-mode) h2,
+body:not(.dark-mode) h3,
+body:not(.dark-mode) h4,
+body:not(.dark-mode) h5,
+body:not(.dark-mode) h6,
+body:not(.dark-mode) p,
+body:not(.dark-mode) label,
+body:not(.dark-mode) .hazard-item,
+body:not(.dark-mode) .footer-links a {
+  color: #333 !important;
+}
+
+/* Dark mode sections */
+body.dark-mode header,
+body.dark-mode .hero-section,
+body.dark-mode #report-form,
+body.dark-mode #hazard-list,
+body.dark-mode footer {
+  background: rgba(30,30,30,0.45);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(30,30,30,0.15);
+  color: #f3f3f3;
+}
+
+/* Dark mode text colors */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode .hazard-item,
+body.dark-mode .footer-links a {
+  color: #f3f3f3 !important;
+}
+
+#toggle-icon {
+  display: inline-block;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+#dark-toggle:active #toggle-icon {
+  transform: rotate(180deg) scale(1.2);
 }
 
 
@@ -27,17 +221,19 @@ header p {
   color: #ccc;
 }
 
-/* Header */
+/* Enhanced header with glass effect */
 header {
-  background: linear-gradient(135deg, #2c3e50, #1a252f);
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(26, 37, 47, 0.9));
+  backdrop-filter: blur(10px);
   color: white;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 header h1 {
@@ -53,25 +249,52 @@ header p {
   opacity: 0.9;
 }
 
-/* Dark Mode Toggle Button */
+/* Enhanced Toggle Button */
 #dark-toggle {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  font-size: 1.4rem;
-  padding: 8px 14px;
-  border: none;
+  font-size: 1.2rem;
+  padding: 12px 16px;
+  border: 2px solid rgba(255,255,255,0.3);
   border-radius: 50px;
-  background-color: rgba(255,255,255,0.2);
-  color: white;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+  color: #ffffff;
   cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  font-weight: 600;
+  min-width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #dark-toggle:hover {
-  background-color: rgba(255,255,255,0.3);
-  transform: scale(1.05);
+  background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  transform: scale(1.1) rotate(180deg);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.5);
+}
+
+#dark-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Dark mode background */
+body.dark-mode {
+  background: linear-gradient(-45deg, #232526, #414345, #232526, #485563);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: #ffffff;
+}
+
+/* Dark mode header */
+body.dark-mode header {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(45, 45, 45, 0.9));
+  backdrop-filter: blur(10px);
 }
 
 /* Map & Sidebar Layout */
@@ -98,11 +321,12 @@ header p {
   min-width: 300px;
   max-height: 65vh;
   overflow-y: auto;
-  background: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
   border-radius: 12px;
   padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
 #hazard-list h3 {
@@ -111,6 +335,12 @@ header p {
   color: #2c3e50;
   display: flex;
   align-items: center;
+}
+
+/* Dark mode hazard list */
+body.dark-mode #hazard-list {
+  background: rgba(30, 30, 30, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 /* Filters */
@@ -182,6 +412,24 @@ header p {
   color: white;
   font-size: 2rem;
   font-weight: 600;
+}
+
+/* Enhanced form with glass effect */
+#report-form {
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(52, 73, 94, 0.9));
+  backdrop-filter: blur(10px);
+  margin: 1.5rem auto;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  max-width: 1400px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Dark mode form */
+body.dark-mode #report-form {
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(45, 45, 45, 0.9));
+  backdrop-filter: blur(10px);
 }
 
 /* Form Elements */
@@ -342,11 +590,12 @@ button[type="submit"]:hover {
 }
 
 footer {
-  background: #1f2a38;
-  color: #f0f0f0;
+  background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(26, 37, 47, 0.9));
+  backdrop-filter: blur(10px);
+  color: #ffffff;
   padding: 1rem 0.5rem;
   text-align: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   font-family: 'Segoe UI', sans-serif;
   font-size: 0.85rem;
 }
@@ -391,8 +640,8 @@ footer {
 
 /* Dark Mode Footer */
 body.dark-mode footer {
-  background: #111820;
-  border-top: 1px solid #2c2c2c;
+  background: linear-gradient(135deg, rgba(26, 26, 26, 0.9), rgba(45, 45, 45, 0.9));
+  backdrop-filter: blur(10px);
 }
 
 body.dark-mode .footer-text,
@@ -425,26 +674,28 @@ body.dark-mode .footer-links a:hover {
 
 /* Dark Mode Styles */
 body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
+  background-color: #0a0a0a;
+  color: #ffffff;
 }
 
 body.dark-mode header {
-  background: linear-gradient(135deg, #121212, #1e1e1e);
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+  color: #ffffff;
 }
 
 body.dark-mode #hazard-list {
   background-color: #1e1e1e;
-  color: #e0e0e0;
-  border-color: #333;
+  color: #ffffff;
+  border-color: #404040;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 body.dark-mode #hazard-list h3 {
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 body.dark-mode .hazard-item {
-  border-bottom-color: #333;
+  border-bottom-color: #404040;
 }
 
 body.dark-mode .hazard-item:hover {
@@ -452,39 +703,39 @@ body.dark-mode .hazard-item:hover {
 }
 
 body.dark-mode .hazard-item h4 {
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 body.dark-mode .hazard-item p {
-  color: #aaa;
+  color: #cccccc;
 }
 
 body.dark-mode .filters button {
-  background-color: #333;
-  color: #e0e0e0;
+  background-color: #333333;
+  color: #ffffff;
 }
 
 body.dark-mode .filters button.active,
 body.dark-mode .filters button:hover {
   background: #3498db;
-  color: white;
+  color: #ffffff;
 }
 
 body.dark-mode #report-form {
-  background: linear-gradient(135deg, #1e1e1e, #252525);
+  background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
 }
 
 body.dark-mode input,
 body.dark-mode textarea,
 body.dark-mode select {
   background-color: #2a2a2a;
-  color: #e0e0e0;
-  border-color: #444;
+  color: #ffffff;
+  border-color: #404040;
 }
 
 body.dark-mode .file-upload-box {
   background: rgba(42,42,42,0.5);
-  border-color: #444;
+  border-color: #404040;
 }
 
 body.dark-mode .file-upload-box:hover {
@@ -492,15 +743,39 @@ body.dark-mode .file-upload-box:hover {
 }
 
 body.dark-mode label {
-  color: #e0e0e0;
+  color: #ffffff;
 }
 
 body.dark-mode footer {
   background-color: #1a1a1a;
+  color: #ffffff;
 }
 
 body.dark-mode a {
   color: #64b5f6;
+}
+
+/* Light mode footer */
+footer {
+  background: #2c3e50;
+  color: #ffffff;
+}
+
+.footer-links a {
+  color: #f1c40f;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #f39c12;
+  text-decoration: underline;
+}
+
+.brand {
+  font-weight: bold;
+  color: #f1c40f;
 }
 .location-dropdowns {
   display: grid;
@@ -730,6 +1005,93 @@ input, select, textarea {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Hero Section Styles */
+.hero-section {
+  width: 100%;
+  min-height: 320px;
+  background: linear-gradient(120deg, #f8fafc 0%, #e0e7ef 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0 30px 0;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
+  transition: background 0.4s;
+}
+.hero-content {
+  text-align: center;
+  max-width: 600px;
+}
+.hero-content h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #1a2233;
+  letter-spacing: 0.5px;
+}
+.hero-content p {
+  font-size: 1.2rem;
+  color: #3a4660;
+  margin-bottom: 24px;
+}
+.hero-cta {
+  background: #ffb300;
+  color: #222;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px 0 rgba(255,179,0,0.08);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.hero-cta:hover, .hero-cta:focus {
+  background: #ff9800;
+  color: #fff;
+  box-shadow: 0 4px 16px 0 rgba(255,152,0,0.16);
+}
+
+/* Dark mode for hero section */
+body.dark-mode .hero-section {
+  background: linear-gradient(120deg, rgba(26, 26, 26, 0.1), rgba(45, 45, 45, 0.1));
+  backdrop-filter: blur(10px);
+}
+body.dark-mode .hero-content h2 {
+  color: #ffffff;
+}
+body.dark-mode .hero-content p {
+  color: #ffffff;
+}
+body.dark-mode .hero-cta {
+  background: #ffd54f;
+  color: #1a1a1a;
+}
+body.dark-mode .hero-cta:hover, body.dark-mode .hero-cta:focus {
+  background: #ffb300;
+  color: #ffffff;
+}
+
+/* Enhanced hero section with glass effect */
+.hero-section {
+  width: 100%;
+  min-height: 320px;
+  background: linear-gradient(120deg, rgba(248, 250, 252, 0.1), rgba(224, 231, 239, 0.1));
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0 30px 0;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  transition: all 0.4s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Dark mode hero */
+body.dark-mode .hero-section {
+  background: linear-gradient(120deg, rgba(26, 26, 26, 0.1), rgba(45, 45, 45, 0.1));
+  backdrop-filter: blur(10px);
+}
+
 /* ==================== MOBILE RESPONSIVE LAYOUT FIXES ==================== */
 
 @media (max-width: 768px) {
@@ -816,4 +1178,34 @@ input, select, textarea {
     font-size: 0.95rem;
     padding: 0.8rem 1.2rem;
   }
+}
+
+body:not(.dark-mode),
+header:not(.dark-mode),
+.hero-section:not(.dark-mode),
+#report-form:not(.dark-mode),
+#hazard-list:not(.dark-mode),
+footer:not(.dark-mode),
+h1, h2, h3, h4, h5, h6,
+p, label, .hazard-item, .footer-links a {
+  color: #181818 !important;
+}
+
+body.dark-mode,
+body.dark-mode header,
+body.dark-mode .hero-section,
+body.dark-mode #report-form,
+body.dark-mode #hazard-list,
+body.dark-mode footer,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode label,
+body.dark-mode .hazard-item,
+body.dark-mode .footer-links a {
+  color: #f3f3f3 !important;
 }
