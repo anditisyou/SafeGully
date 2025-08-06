@@ -214,6 +214,25 @@ emailjs.send("service_g7tstof", "template_mzh2jfj", {
   console.error("❌ Email send failed:", error);
 });
 
+// Scroll to report form when location input is clicked, only if not visible
+const locationInput = document.getElementById('location-input');
+if (locationInput) {
+  locationInput.addEventListener('click', function(e) {
+    const reportFormSection = document.getElementById('report-form');
+    if (reportFormSection) {
+      const rect = reportFormSection.getBoundingClientRect();
+      const fullyVisible = rect.top >= 0 && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight);
+      if (!fullyVisible) {
+        reportFormSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Focus after scroll
+        setTimeout(() => locationInput.focus(), 600);
+      } else {
+        locationInput.focus();
+      }
+    }
+  });
+}
+
 // 📤 Export to CSV
 document.getElementById('export-data').addEventListener('click', () => {
   const csv = 'ID,Latitude,Longitude,Type,Location,Description,Status,Date\n' +
