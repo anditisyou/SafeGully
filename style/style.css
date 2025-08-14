@@ -2,6 +2,11 @@
 * {
   box-sizing: border-box;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
 html, body {
   margin: 0;
   padding: 0;
@@ -82,12 +87,16 @@ header p {
   padding: 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+  margin-bottom: 2.5rem; /* Add space below map container */
+  max-height: 65vh; /* Prevent map container from overflowing vertically */
+  overflow: hidden; /* Hide anything that overflows */
 }
 
 #map {
   flex: 2;
-  min-height: 500px;
-  height: 65vh;
+  min-height: 400px;
+  max-height: 60vh;
+  height: 100%;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.1);
@@ -168,7 +177,7 @@ header p {
 /* Report Form */
 #report-form {
   background: linear-gradient(135deg, #2c3e50, #34495e);
-  margin: 1.5rem auto;
+  margin: 2.5rem auto; /* Add space above report form */
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
