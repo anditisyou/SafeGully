@@ -73,21 +73,21 @@ header p {
   background-color: rgba(255,255,255,0.3);
   transform: scale(1.05);
 }
+/*map container*/ 
 
-/* Map & Sidebar Layout */
 .map-container {
   display: flex;
-  flex-wrap: wrap;
   gap: 1.5rem;
   padding: 1.5rem;
   max-width: 1400px;
   margin: 0 auto;
+  align-items: flex-start;
 }
 
 #map {
   flex: 2;
   min-height: 500px;
-  height: 65vh;
+  height: 50vh;  /* keep for desktop */
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   border: 1px solid rgba(0,0,0,0.1);
@@ -117,7 +117,7 @@ header p {
 .filters {
   display: flex;
   gap: 0.5rem;
-  margin: 1rem 0;
+  margin: 3px 0;
 }
 
 .filters button {
@@ -168,7 +168,7 @@ header p {
 /* Report Form */
 #report-form {
   background: linear-gradient(135deg, #2c3e50, #34495e);
-  margin: 1.5rem auto;
+  margin: 3rem auto;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -783,6 +783,24 @@ input, select, textarea {
     padding: 12px;
     font-size: 1rem;
     margin: 0.5rem 0;
+  }
+}
+@media (max-width: 992px) {
+  .map-container {
+    flex-direction: column;  /*stacked vertical manner*/
+    align-items: center;
+  }
+
+  #map, #hazard-list {
+    width: 100%;
+    max-width: 100%;
+    height: auto;            /* height restriction removed */
+    min-height: 300px;
+  }
+
+  #hazard-list {
+    max-height: none;        /* same as above */
+    margin-top: 1rem;
   }
 }
 
