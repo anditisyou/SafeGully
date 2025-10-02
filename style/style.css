@@ -27,6 +27,27 @@ header p {
   color: #ccc;
 }
 
+/* Searchbar of hazards */
+.search-bar {
+  margin: 10px 0;
+}
+
+#search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+#search-input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+}
+
+
+
 /* Header */
 header {
   background: linear-gradient(135deg, #2c3e50, #1a252f);

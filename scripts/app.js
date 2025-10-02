@@ -12,6 +12,8 @@ const hazardTypes = {
   accident: { icon: '⚠️', color: '#e74c3c' }
 };
 
+
+
 // 🎯 App State
 let hazards = JSON.parse(localStorage.getItem('hazards')) || [];
 let lastClickedLatLng = null;

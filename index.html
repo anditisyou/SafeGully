@@ -30,6 +30,18 @@
     <button id="dark-toggle" aria-label="Toggle Dark Mode">🌓</button>
   </header>
 
+   <!-- Search bar for hazard report -->
+    <div class="search-bar">
+  <input 
+    type="text" 
+    id="search-input" 
+    placeholder="🔍 Search hazards (e.g., pothole, streetlight, illegal-parking)" 
+    aria-label="Search Hazards"
+  />
+</div>
+
+
+
   <!-- Main Layout -->
   <main>
     <div class="map-container">
@@ -45,6 +57,8 @@
         <div id="hazard-items" aria-live="polite"></div>
       </aside>
     </div>
+
+   
 
     <!-- Hazard Report Form -->
     <section id="report-form" class="form-section">
